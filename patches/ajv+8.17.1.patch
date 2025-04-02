@@ -1,0 +1,13 @@
+diff --git a/node_modules/ajv/dist/ajv.d.ts b/node_modules/ajv/dist/ajv.d.ts
+index fce3b03..35944bb 100644
+--- a/node_modules/ajv/dist/ajv.d.ts
++++ b/node_modules/ajv/dist/ajv.d.ts
+@@ -6,7 +6,7 @@ export declare class Ajv extends AjvCore {
+     defaultMeta(): string | AnySchemaObject | undefined;
+ }
+ export default Ajv;
+-export { Format, FormatDefinition, AsyncFormatDefinition, KeywordDefinition, KeywordErrorDefinition, CodeKeywordDefinition, MacroKeywordDefinition, FuncKeywordDefinition, Vocabulary, Schema, SchemaObject, AnySchemaObject, AsyncSchema, AnySchema, ValidateFunction, AsyncValidateFunction, SchemaValidateFunction, ErrorObject, ErrorNoParams, } from "./types";
++export { Format, FormatDefinition, AsyncFormatDefinition, KeywordDefinition, KeywordErrorDefinition, CodeKeywordDefinition, MacroKeywordDefinition, FuncKeywordDefinition, Vocabulary, Schema, SchemaObject, AnySchemaObject, AsyncSchema, AnySchema, DataValidationCxt, ValidateFunction, AsyncValidateFunction, SchemaValidateFunction, ErrorObject, ErrorNoParams, } from "./types";
+ export { Plugin, Options, CodeOptions, InstanceOptions, Logger, ErrorsTextOptions } from "./core";
+ export { SchemaCxt, SchemaObjCxt } from "./compile";
+ export { KeywordCxt } from "./compile/validate";

@@ -15,9 +15,9 @@ npm install json-schema-migrate
 ## Usage
 
 ```javascript
-const migrate = require("json-schema-migrate")
+const migrate = require('json-schema-migrate')
 const schema = {
-  id: "my-schema",
+  id: 'my-schema',
   minimum: 1,
   exclusiveMinimum: true,
 }

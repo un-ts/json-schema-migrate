@@ -1,98 +1,124 @@
-import Ajv, {SchemaObject, AnySchemaObject, AnySchema} from "ajv/dist/2019"
-import type {DataValidationCxt, ValidateFunction} from "ajv/dist/types"
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-type SchemaVersion = "draft7" | "draft2019" | "draft2020"
+import type {
+  DataValidationCxt,
+  SchemaObject,
+  AnySchemaObject,
+  AnySchema,
+  ValidateFunction,
+} from 'ajv'
+import { Ajv } from 'ajv'
 
-export const draft7 = getMigrate("draft7")
-export const draft2019 = getMigrate("draft2019")
-export const draft2020 = getMigrate("draft2020")
+import { getAjvByVersion } from './ajv.js'
+import type { SchemaVersion } from './types.js'
 
-function getMigrateSchema(version: SchemaVersion): SchemaObject {
+export const draft7 = getMigrate('draft7')
+export const draft2019 = getMigrate('draft2019')
+export const draft2020 = getMigrate('draft2020')
+
+function getMigrateSchema(spec: SchemaVersion): SchemaObject {
   return {
-    $id: `migrateSchema-${version}`,
-    $schema: "https://json-schema.org/draft/2019-09/schema",
+    $id: `migrateSchema-${spec}`,
+    $schema: 'https://json-schema.org/draft/2019-09/schema',
     $recursiveAnchor: true,
-    allOf: [{migrateSchema: version}, {$ref: "https://json-schema.org/draft/2019-09/schema"}],
+    allOf: [
+      { migrateSchema: spec },
+      { $ref: 'https://json-schema.org/draft/2019-09/schema' },
+    ],
   }
 }
 
-function getMigrate(version: SchemaVersion): (schema: AnySchemaObject) => void {
+function getMigrate(version: SchemaVersion) {
   let migrate: ValidateFunction | undefined
-
-  return (schema) => {
-    migrate ||= getAjv().compile(getMigrateSchema(version))
+  return (schema: AnySchemaObject) => {
+    migrate ||= getAjv(version).compile(getMigrateSchema(version))
     migrate(schema)
     schema.$schema ||= metaSchema(version)
   }
 }
 
-function metaSchema(version: SchemaVersion): string {
-  return version === "draft7"
-    ? "http://json-schema.org/draft-07/schema"
-    : "https://json-schema.org/draft/2019-09/schema"
+function metaSchema(spec: SchemaVersion): string {
+  return spec === 'draft7'
+    ? 'http://json-schema.org/draft-07/schema'
+    : 'https://json-schema.org/draft/2019-09/schema'
 }
 
-let ajv: Ajv | undefined
+const ajvCache = new Map<SchemaVersion, Ajv>()
 
-export function getAjv(): Ajv {
-  if (ajv) return ajv
-  const _ajv = (ajv = new Ajv({allErrors: true}))
+export function getAjv(version: SchemaVersion = 'draft7'): Ajv {
+  let ajv = ajvCache.get(version)
 
-  _ajv.addKeyword({
-    keyword: "migrateSchema",
-    schemaType: "string",
+  if (ajv) {
+    return ajv
+  }
+
+  ajv = getAjvByVersion(version)
+
+  ajv.addKeyword({
+    keyword: 'migrateSchema',
+    schemaType: 'string',
     modifying: true,
-    metaSchema: {enum: ["draft7", "draft2019", "draft2020"]},
-    // eslint-disable-next-line complexity
+    metaSchema: { enum: ['draft7', 'draft2019', 'draft2020'] },
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     validate(
       version: SchemaVersion,
       dataSchema: AnySchema,
       _parentSchema?: AnySchemaObject,
-      dataCxt?: DataValidationCxt
+      dataCxt?: DataValidationCxt,
     ) {
-      if (typeof dataSchema != "object") return true
+      if (typeof dataSchema != 'object') {
+        return true
+      }
+
       if (dataCxt) {
-        const {parentData, parentDataProperty} = dataCxt
+        const { parentData, parentDataProperty } = dataCxt
         const valid = constantResultSchema(dataSchema)
-        if (typeof valid == "boolean") {
+        if (typeof valid == 'boolean') {
           parentData[parentDataProperty] = valid
           return true
         }
       }
-      const dsCopy = {...dataSchema}
-      for (const key in dsCopy) delete dataSchema[key]
+
+      const dsCopy = { ...dataSchema }
       for (const key in dsCopy) {
+        delete dataSchema[key]
         switch (key) {
-          case "id": {
-            const {id} = dsCopy
-            if (typeof id !== "string") {
-              throw new Error(`json-schema-migrate: schema id must be string`)
+          case 'id': {
+            const { id } = dsCopy
+            if (typeof id !== 'string') {
+              throw new TypeError(
+                `json-schema-migrate: schema id must be string`,
+              )
             }
-            if ((version === "draft2019" || version === "draft2020") && id.includes("#")) {
-              const [$id, $anchor, ...rest] = id.split("#")
+            if (
+              (version === 'draft2019' || version === 'draft2020') &&
+              id.includes('#')
+            ) {
+              const [$id, $anchor, ...rest] = id.split('#')
               if (rest.length > 0) {
                 throw new Error(`json-schema-migrate: invalid schema id ${id}`)
               }
               if ($id) dataSchema.$id = $id
-              if ($anchor && $anchor !== "/") dataSchema.$anchor = $anchor
+              if ($anchor && $anchor !== '/') dataSchema.$anchor = $anchor
             } else {
               dataSchema.$id = id
             }
             break
           }
-          case "$schema": {
-            const {$schema} = dsCopy
+          case '$schema': {
+            const { $schema } = dsCopy
             dataSchema.$schema =
-              $schema === "http://json-schema.org/draft-04/schema#" ||
-              $schema === "http://json-schema.org/draft-04/schema"
+              $schema === 'http://json-schema.org/draft-04/schema#' ||
+              $schema === 'http://json-schema.org/draft-04/schema'
                 ? metaSchema(version)
                 : $schema
             break
           }
-          case "constant":
+          case 'constant': {
             dataSchema.const = dsCopy.constant
             break
-          case "enum":
+          }
+          case 'enum': {
             if (
               Array.isArray(dsCopy.enum) &&
               dsCopy.enum.length === 1 &&
@@ -104,33 +130,43 @@ export function getAjv(): Ajv {
               dataSchema.enum = dsCopy.enum
             }
             break
-          case "exclusiveMaximum":
-            migrateExclusive(dataSchema, key, "maximum")
+          }
+          case 'exclusiveMaximum': {
+            migrateExclusive(dataSchema, key, 'maximum')
             break
-          case "exclusiveMinimum":
-            migrateExclusive(dataSchema, key, "minimum")
+          }
+          case 'exclusiveMinimum': {
+            migrateExclusive(dataSchema, key, 'minimum')
             break
-          case "maximum":
-            if (dsCopy.exclusiveMaximum !== true) dataSchema.maximum = dsCopy.maximum
+          }
+          case 'maximum': {
+            if (dsCopy.exclusiveMaximum !== true)
+              dataSchema.maximum = dsCopy.maximum
             break
-          case "minimum":
-            if (dsCopy.exclusiveMinimum !== true) dataSchema.minimum = dsCopy.minimum
+          }
+          case 'minimum': {
+            if (dsCopy.exclusiveMinimum !== true)
+              dataSchema.minimum = dsCopy.minimum
             break
-          case "dependencies": {
-            const deps = dsCopy.dependencies
-            if (version === "draft7") {
+          }
+          case 'dependencies': {
+            const deps = dsCopy.dependencies as Record<string, unknown>
+            if (version === 'draft7') {
               dataSchema.dependencies = deps
             } else {
               for (const prop in deps) {
-                const kwd = Array.isArray(deps[prop]) ? "dependentRequired" : "dependentSchemas"
+                const kwd = Array.isArray(deps[prop])
+                  ? 'dependentRequired'
+                  : 'dependentSchemas'
                 dataSchema[kwd] ||= {}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                 dataSchema[kwd][prop] = deps[prop]
               }
             }
             break
           }
-          case "items":
-            if (version === "draft2020" && Array.isArray(dsCopy.items)) {
+          case 'items': {
+            if (version === 'draft2020' && Array.isArray(dsCopy.items)) {
               dataSchema.prefixItems = dsCopy.items
               if (dsCopy.additionalItems !== undefined) {
                 dataSchema.items = dsCopy.additionalItems
@@ -139,36 +175,52 @@ export function getAjv(): Ajv {
               dataSchema.items = dsCopy.items
             }
             break
-          case "additionalItems":
-            if (version !== "draft2020") {
+          }
+          case 'additionalItems': {
+            if (version !== 'draft2020') {
               dataSchema.additionalItems = dsCopy.additionalItems
             }
             break
-          default:
+          }
+          default: {
             dataSchema[key] = dsCopy[key]
+          }
         }
       }
+
       return true
 
-      function migrateExclusive(schema: AnySchemaObject, key: string, limit: string): void {
+      function migrateExclusive(
+        schema: AnySchemaObject,
+        key: string,
+        limit: string,
+      ): void {
         if (dsCopy[key] === true) {
           schema[key] = dsCopy[limit]
         } else if (dsCopy[key] !== false && dsCopy[key] !== undefined) {
-          _ajv.logger.warn(`${key} is not boolean`)
+          ajv!.logger.warn(`${key} is not boolean`)
         }
       }
     },
   })
-  return _ajv
+
+  ajvCache.set(version, ajv)
+
+  return ajv
 }
 
 function constantResultSchema(schema: AnySchema): boolean | undefined {
-  if (typeof schema == "boolean") return schema
-  const keys = Object.keys(schema)
-  if (keys.length === 0) return true
-  if (keys.length === 1 && keys[0] === "not") {
-    const valid = constantResultSchema(schema.not)
-    if (typeof valid == "boolean") return !valid
+  if (typeof schema == 'boolean') {
+    return schema
   }
-  return undefined
+  const keys = Object.keys(schema)
+  if (keys.length === 0) {
+    return true
+  }
+  if (keys.length === 1 && keys[0] === 'not') {
+    const valid = constantResultSchema(schema.not as AnySchema)
+    if (typeof valid === 'boolean') {
+      return !valid
+    }
+  }
 }

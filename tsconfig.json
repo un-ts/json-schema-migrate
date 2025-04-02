@@ -1,11 +1,6 @@
 {
-  "extends": "@ajv-validator/config",
-  "include": ["src"],
+  "extends": "@1stg/tsconfig/node",
   "compilerOptions": {
-    "outDir": "dist",
-    "lib": ["ES2018"],
-    "types": ["node", "jest"],
-    "target": "ES2018",
-    "resolveJsonModule": true
+    "module": "ESNext"
   }
 }

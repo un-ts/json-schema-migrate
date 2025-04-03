@@ -61,14 +61,13 @@ console.log(migrate.getAjv().errorsText(errors))
 ## Changes in schemas after migration
 
 - `id` is replaced with `$id`
-- `$schema` value becomes draft-07, draft-2019-09 or draft-2020-12 meta-schema
-- draft-04 boolean form of `exclusiveMaximum/Minimum` is replaced with the current number form
+- `$schema` value becomes `draft-07`, `draft-2019-09` or `draft-2020-12` meta-schema
+- `draft-04` boolean form of `exclusiveMaximum/Minimum` is replaced with the current number form
 - `enum` with a single allowed value is replaced with `const`
 - Non-standard `constant` is replaced with `const`
 - empty schema is replaced with `true`
 - schema `{"not":{}}` is replaced with `false`
 - `draft2019` function additionally replaces:
-  - `definitions` with `$defs`
   - `dependencies` with `dependentRequired` and `dependentSchemas`
   - `"id": "#foo"` with `"$anchor": "foo"`
   - `"id": "schema#foo"` with `"$id": "schema", "$anchor": "foo"`

@@ -12,7 +12,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-Migrate JSON-Schema from `draft-04` to `draft-07`, `draft-2019-09` or `draft-2020-12`
+This is an actively maintained fork of [`json-schema-migrate`](https://github.com/ajv-validator/json-schema-migrate) which helps migrate JSON-Schema from `draft-04` to `draft-07`, `draft-2019-09` or `draft-2020-12`.
 
 ## Install
 

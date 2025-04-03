@@ -42,7 +42,13 @@
   "keywords": [
     "JSON-Schema",
     "migrate",
-    "draft-06"
+    "draft-04",
+    "draft-06",
+    "draft-07",
+    "draft-2019",
+    "draft-2019-09",
+    "draft-2020",
+    "draft-2020-12"
   ],
   "scripts": {
     "build": "run-p 'build:*'",

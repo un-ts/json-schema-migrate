@@ -1,4 +1,4 @@
-import { Ajv2019 as Ajv } from 'ajv/dist/2019.js'
+import Ajv from 'ajv/dist/core.js'
 
 import expectedSchemaDraft7 from './fixtures/expected-schema-from-draft-04-to-07.json'
 import expectedSchemaDraft2019 from './fixtures/expected-schema-from-draft-04-to-2019.json'

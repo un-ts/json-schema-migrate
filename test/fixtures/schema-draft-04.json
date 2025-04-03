@@ -1,6 +1,7 @@
 {
   "id": "my-schema",
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "$recursiveAnchor": true,
   "definitions": {
     "str": {
       "id": "#str",

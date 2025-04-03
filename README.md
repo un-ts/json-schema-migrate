@@ -1,26 +1,45 @@
-# json-schema-migrate
+# @unts/json-schema-migrate
 
-Migrate JSON-Schema from draft-04 to draft-07, draft-2019-09 or draft-2020-12
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/un-ts/json-schema-migrate/ci.yml?branch=master)](https://github.com/un-ts/json-schema-migrate/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Codecov](https://img.shields.io/codecov/c/github/un-ts/json-schema-migrate.svg)](https://codecov.io/gh/un-ts/json-schema-migrate)
+[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fun-ts%2Fjson-schema-migrate%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/un-ts/json-schema-migrate)](https://coderabbit.ai)
+[![npm](https://img.shields.io/npm/v/@unts/json-schema-migrate.svg)](https://www.npmjs.com/package/@unts/json-schema-migrate)
+[![GitHub Release](https://img.shields.io/github/release/un-ts/json-schema-migrate)](https://github.com/un-ts/json-schema-migrate/releases)
 
-[![build](https://github.com/ajv-validator/json-schema-migrate/workflows/build/badge.svg)](https://github.com/ajv-validator/json-schema-migrate/actions?query=workflow%3Abuild)
-[![npm](https://img.shields.io/npm/v/json-schema-migrate)](https://www.npmjs.com/package/json-schema-migrate)
-[![coverage](https://coveralls.io/repos/github/ajv-validator/json-schema-migrate/badge.svg?branch=master)](https://coveralls.io/github/ajv-validator/json-schema-migrate?branch=master)
+[![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
+Migrate JSON-Schema from `draft-04` to `draft-07`, `draft-2019-09` or `draft-2020-12`
 
 ## Install
 
-```
-npm install json-schema-migrate
+```sh
+# npm
+npm install @unts/json-schema-migrate
+
+# yarn
+yarn add @unts/json-schema-migrate
+
+# pnpm
+pnpm add @unts/json-schema-migrate
+
+# bun
+bun add @unts/json-schema-migrate
 ```
 
 ## Usage
 
-```javascript
-const migrate = require("json-schema-migrate")
+```js
+import * as migrate from '@unts/json-schema-migrate'
 const schema = {
-  id: "my-schema",
+  id: 'my-schema',
   minimum: 1,
   exclusiveMinimum: true,
 }
+
 migrate.draft7(schema)
 // or migrate.draft2019(schema)
 // or migrate.draft2020(schema)
@@ -34,7 +53,7 @@ console.log(schema)
 
 You can access Ajv instance that is used to migrate schema using `migrate.getAjv` function:
 
-```javascript
+```js
 console.log(migrate.getAjv().errorsText(errors))
 ```
 
@@ -54,6 +73,28 @@ console.log(migrate.getAjv().errorsText(errors))
   - `"id": "schema#foo"` with `"$id": "schema", "$anchor": "foo"`
 - `draft2020` function additionally replaces array form of `items` with `prefixItems` (and `additionalItems` with `items`)
 
+[![Sponsors](https://raw.githubusercontent.com/1stG/static/master/sponsors.svg)](https://github.com/sponsors/JounQin)
+
+## Sponsors
+
+| 1stG                                                                                                                   | RxTS                                                                                                                   | UnTS                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [![1stG Open Collective sponsors](https://opencollective.com/1stG/organizations.svg)](https://opencollective.com/1stG) | [![RxTS Open Collective sponsors](https://opencollective.com/rxts/organizations.svg)](https://opencollective.com/rxts) | [![UnTS Open Collective sponsors](https://opencollective.com/unts/organizations.svg)](https://opencollective.com/unts) |
+
+## Backers
+
+| 1stG                                                                                                                | RxTS                                                                                                                | UnTS                                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [![1stG Open Collective backers](https://opencollective.com/1stG/individuals.svg)](https://opencollective.com/1stG) | [![RxTS Open Collective backers](https://opencollective.com/rxts/individuals.svg)](https://opencollective.com/rxts) | [![UnTS Open Collective backers](https://opencollective.com/unts/individuals.svg)](https://opencollective.com/unts) |
+
+## Changelog
+
+Detailed changes for each release are documented in [CHANGELOG.md](./CHANGELOG.md).
+
 ## License
 
-[MIT](https://github.com/epoberezkin/json-schema-migrate/blob/master/LICENSE)
+[MIT][] © [JounQin][]@[1stG.me][]
+
+[1stg.me]: https://www.1stg.me
+[jounqin]: https://GitHub.com/JounQin
+[mit]: http://opensource.org/licenses/MIT

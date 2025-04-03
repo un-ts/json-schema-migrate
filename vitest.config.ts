@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   resolve: {
     alias: {
-      '@unts/json-schema-migrate': new URL('src/index.ts', import.meta.url)
+      'json-schema-migrate-x': new URL('src/index.ts', import.meta.url)
         .pathname,
     },
   },

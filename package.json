@@ -1,9 +1,9 @@
 {
-  "name": "@unts/json-schema-migrate",
+  "name": "json-schema-migrate-x",
   "version": "2.1.0",
   "type": "module",
   "description": "Migrate JSON-Schema `draft-04` to `draft-07`, `draft-2019-09` or `draft-2020-12`",
-  "repository": "https://github.com/un-ts/json-schema-migrate.git",
+  "repository": "https://github.com/un-ts/json-schema-migrate-x.git",
   "author": "Evgeny Poberezkin",
   "maintainers": [
     "JounQin <admin@1stg.me> (https://www.1stG.me)"
@@ -40,15 +40,18 @@
     "!lib/*.tsbuildinfo"
   ],
   "keywords": [
-    "JSON-Schema",
-    "migrate",
     "draft-04",
     "draft-06",
     "draft-07",
     "draft-2019",
     "draft-2019-09",
     "draft-2020",
-    "draft-2020-12"
+    "draft-2020-12",
+    "json-schema",
+    "JSON-Schema",
+    "json-schema-migrate",
+    "jsonschema",
+    "migrate"
   ],
   "scripts": {
     "build": "run-p 'build:*'",

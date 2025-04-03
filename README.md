@@ -1,11 +1,11 @@
-# @unts/json-schema-migrate
+# json-schema-migrate-x
 
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/un-ts/json-schema-migrate/ci.yml?branch=master)](https://github.com/un-ts/json-schema-migrate/actions/workflows/ci.yml?query=branch%3Amaster)
-[![Codecov](https://img.shields.io/codecov/c/github/un-ts/json-schema-migrate.svg)](https://codecov.io/gh/un-ts/json-schema-migrate)
-[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fun-ts%2Fjson-schema-migrate%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
-[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/un-ts/json-schema-migrate)](https://coderabbit.ai)
-[![npm](https://img.shields.io/npm/v/@unts/json-schema-migrate.svg)](https://www.npmjs.com/package/@unts/json-schema-migrate)
-[![GitHub Release](https://img.shields.io/github/release/un-ts/json-schema-migrate)](https://github.com/un-ts/json-schema-migrate/releases)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/un-ts/json-schema-migrate-x/ci.yml?branch=master)](https://github.com/un-ts/json-schema-migrate-x/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Codecov](https://img.shields.io/codecov/c/github/un-ts/json-schema-migrate-x.svg)](https://codecov.io/gh/un-ts/json-schema-migrate-x)
+[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fun-ts%2Fjson-schema-migrate-x%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/un-ts/json-schema-migrate-x)](https://coderabbit.ai)
+[![npm](https://img.shields.io/npm/v/json-schema-migrate-x.svg)](https://www.npmjs.com/package/json-schema-migrate-x)
+[![GitHub Release](https://img.shields.io/github/release/un-ts/json-schema-migrate-x)](https://github.com/un-ts/json-schema-migrate-x/releases)
 
 [![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
@@ -18,22 +18,22 @@ This is an actively maintained fork of [`json-schema-migrate`](https://github.co
 
 ```sh
 # npm
-npm install @unts/json-schema-migrate
+npm install json-schema-migrate-x
 
 # yarn
-yarn add @unts/json-schema-migrate
+yarn add json-schema-migrate-x
 
 # pnpm
-pnpm add @unts/json-schema-migrate
+pnpm add json-schema-migrate-x
 
 # bun
-bun add @unts/json-schema-migrate
+bun add json-schema-migrate-x
 ```
 
 ## Usage
 
 ```js
-import * as migrate from '@unts/json-schema-migrate'
+import * as migrate from 'json-schema-migrate-x'
 
 const schema = {
   id: 'my-schema',

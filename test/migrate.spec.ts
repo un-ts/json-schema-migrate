@@ -5,7 +5,7 @@ import expectedSchemaDraft2019 from './fixtures/expected-schema-from-draft-04-to
 import expectedSchemaDraft2020 from './fixtures/expected-schema-from-draft-04-to-2020.json'
 import schemaDraft4 from './fixtures/schema-draft-04.json'
 
-import { draft7, draft2019, draft2020, getAjv } from '@unts/json-schema-migrate'
+import { draft7, draft2019, draft2020, getAjv } from 'json-schema-migrate-x'
 
 describe('migrate to draft-07 schema', () => {
   it('should migrate from draft-04 schema to draft-07 schema', () => {

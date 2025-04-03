@@ -41,8 +41,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: 'chore: release @unts/json-schema-migrate'
-          title: 'chore: release @unts/json-schema-migrate'
+          commit: 'chore: release json-schema-migrate-x'
+          title: 'chore: release json-schema-migrate-x'
           version: yarn run version
           publish: yarn release
         env:

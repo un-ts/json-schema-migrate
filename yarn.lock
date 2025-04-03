@@ -4209,34 +4209,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unts/json-schema-migrate@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@unts/json-schema-migrate@workspace:."
-  dependencies:
-    "@1stg/common-config": "npm:^11.1.2"
-    "@changesets/changelog-github": "npm:^0.5.1"
-    "@changesets/cli": "npm:^2.28.1"
-    "@commitlint/cli": "npm:^19.8.0"
-    "@pkgr/rollup": "npm:^6.0.1"
-    "@types/node": "npm:^22.14.0"
-    "@vitest/coverage-v8": "npm:^3.1.1"
-    ajv: "npm:^8.17.1"
-    clean-pkg-json: "npm:^1.2.1"
-    eslint: "npm:^9.23.0"
-    lint-staged: "npm:^15.5.0"
-    npm-run-all2: "npm:^7.0.2"
-    prettier: "npm:^3.5.3"
-    simple-git-hooks: "npm:^2.12.1"
-    size-limit: "npm:^11.2.0"
-    size-limit-preset-node-lib: "npm:^0.3.0"
-    tslib: "npm:^2.8.1"
-    type-coverage: "npm:^2.29.7"
-    typescript: "npm:^5.8.2"
-    vitest: "npm:^3.1.1"
-    yarn-berry-deduplicate: "npm:^6.1.1"
-  languageName: unknown
-  linkType: soft
-
 "@vitest/coverage-v8@npm:^3.1.1":
   version: 3.1.1
   resolution: "@vitest/coverage-v8@npm:3.1.1"
@@ -9087,6 +9059,34 @@ __metadata:
   checksum: 10c0/84cd9304a97e8fb2af3937bf53acb91c026aeb859703c332684e688ea60db27fc2242aa532a84e1883fdcbe1e5c1fb57c2bef38e312021aa1cd300defc63cf16
   languageName: node
   linkType: hard
+
+"json-schema-migrate-x@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "json-schema-migrate-x@workspace:."
+  dependencies:
+    "@1stg/common-config": "npm:^11.1.2"
+    "@changesets/changelog-github": "npm:^0.5.1"
+    "@changesets/cli": "npm:^2.28.1"
+    "@commitlint/cli": "npm:^19.8.0"
+    "@pkgr/rollup": "npm:^6.0.1"
+    "@types/node": "npm:^22.14.0"
+    "@vitest/coverage-v8": "npm:^3.1.1"
+    ajv: "npm:^8.17.1"
+    clean-pkg-json: "npm:^1.2.1"
+    eslint: "npm:^9.23.0"
+    lint-staged: "npm:^15.5.0"
+    npm-run-all2: "npm:^7.0.2"
+    prettier: "npm:^3.5.3"
+    simple-git-hooks: "npm:^2.12.1"
+    size-limit: "npm:^11.2.0"
+    size-limit-preset-node-lib: "npm:^0.3.0"
+    tslib: "npm:^2.8.1"
+    type-coverage: "npm:^2.29.7"
+    typescript: "npm:^5.8.2"
+    vitest: "npm:^3.1.1"
+    yarn-berry-deduplicate: "npm:^6.1.1"
+  languageName: unknown
+  linkType: soft
 
 "json-schema-traverse@npm:^0.4.1":
   version: 0.4.1

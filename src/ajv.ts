@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import type { AnySchema, AnySchemaObject, DataValidationCxt } from 'ajv'
 import { Ajv2019 } from 'ajv/dist/2019.js'
 import { Ajv2020 } from 'ajv/dist/2020.js'
 import type AjvCore from 'ajv/dist/core.js'
+import type {
+  AnySchema,
+  AnySchemaObject,
+  DataValidationCxt,
+} from 'ajv/dist/types/index.js'
 
-import { constantResultSchema, metaSchema } from './helpers.js'
+import { constantResultSchema, metaSchema } from './common.js'
 import type { SchemaVersion } from './types.js'
 
 const ajvCache: Partial<Record<'default' | 'draft2020', AjvCore.default>> = {}

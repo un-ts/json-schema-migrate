@@ -1,6 +1,6 @@
 {
   "name": "@unts/json-schema-migrate",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "type": "module",
   "description": "Migrate JSON-Schema to draft-06",
   "repository": "https://github.com/un-ts/json-schema-migrate.git",

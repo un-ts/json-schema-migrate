@@ -1,12 +1,11 @@
-import { jest } from '@jest/globals'
 import { Ajv2019 as Ajv } from 'ajv/dist/2019.js'
-
-import { draft7, draft2019, draft2020, getAjv } from '../src/index.js'
 
 import expectedSchemaDraft7 from './fixtures/expected-schema-from-draft-04-to-07.json'
 import expectedSchemaDraft2019 from './fixtures/expected-schema-from-draft-04-to-2019.json'
 import expectedSchemaDraft2020 from './fixtures/expected-schema-from-draft-04-to-2020.json'
 import schemaDraft4 from './fixtures/schema-draft-04.json'
+
+import { draft7, draft2019, draft2020, getAjv } from '@unts/json-schema-migrate'
 
 describe('migrate to draft-07 schema', () => {
   it('should migrate from draft-04 schema to draft-07 schema', () => {
@@ -46,7 +45,7 @@ describe('migrate to draft-07 schema', () => {
 
     it('should warn on non-boolean `exclusiveMaximum`', () => {
       const { warn } = console
-      console.warn = jest.fn()
+      console.warn = vi.fn()
       draft7({
         type: 'number',
         exclusiveMaximum: 'true',

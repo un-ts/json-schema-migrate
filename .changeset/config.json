@@ -3,13 +3,13 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "un-ts/synckit"
+      "repo": "un-ts/json-schema-migrate"
     }
   ],
   "commit": false,
   "linked": [],
   "access": "public",
-  "baseBranch": "main",
+  "baseBranch": "master",
   "updateInternalDependencies": "patch",
   "ignore": []
 }

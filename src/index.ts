@@ -96,8 +96,12 @@ export function getAjv(): Ajv {
               if (rest.length > 0) {
                 throw new Error(`json-schema-migrate: invalid schema id ${id}`)
               }
-              if ($id) dataSchema.$id = $id
-              if ($anchor && $anchor !== '/') dataSchema.$anchor = $anchor
+              if ($id) {
+                dataSchema.$id = $id
+              }
+              if ($anchor && $anchor !== '/') {
+                dataSchema.$anchor = $anchor
+              }
             } else {
               dataSchema.$id = id
             }
@@ -138,13 +142,15 @@ export function getAjv(): Ajv {
             break
           }
           case 'maximum': {
-            if (dsCopy.exclusiveMaximum !== true)
+            if (dsCopy.exclusiveMaximum !== true) {
               dataSchema.maximum = dsCopy.maximum
+            }
             break
           }
           case 'minimum': {
-            if (dsCopy.exclusiveMinimum !== true)
+            if (dsCopy.exclusiveMinimum !== true) {
               dataSchema.minimum = dsCopy.minimum
+            }
             break
           }
           case 'dependencies': {

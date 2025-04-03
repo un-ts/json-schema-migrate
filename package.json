@@ -2,7 +2,7 @@
   "name": "@unts/json-schema-migrate",
   "version": "2.1.0",
   "type": "module",
-  "description": "Migrate JSON-Schema to draft-06",
+  "description": "Migrate JSON-Schema `draft-04` to `draft-07`, `draft-2019-09` or `draft-2020-12`",
   "repository": "https://github.com/un-ts/json-schema-migrate.git",
   "author": "Evgeny Poberezkin",
   "maintainers": [
